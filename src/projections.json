@@ -1,0 +1,7 @@
+[
+    {
+        "name": "EPSG:32632",
+        "proj4Definition": "+proj=utm +zone=32 +units=m +no_defs",
+        "extent": [-1206118.71, 4021309.92, 1295389.00, 8051813.28]
+    }
+]

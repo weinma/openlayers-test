@@ -5,7 +5,7 @@ import MapView from './Map'
 function App() {
   return (
     <div className="App">
-      <MapView className="Map"/>
+      <MapView className="Map" />
     </div>
   )
 }
