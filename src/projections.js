@@ -24,7 +24,7 @@ initialiseProjections()
 const getProjection = projectionId => {
     let projection = findProjection(projectionId)
 
-    if (projection) return ({ projection, extent: projection.getExtent() })
+    if (projection) return ({ projection: projectionId, extent: projection.getExtent() })
     if (!projectionId) console.warn(`No ProjectionId specified. Using: ${DEFAULT_PROJECTION.projection}`)
     else if (!projection) console.warn(`ProjectionId: ${projectionId} not found. Using: ${DEFAULT_PROJECTION.projection}`)
 
