@@ -3,12 +3,10 @@ import Map from 'ol/Map'
 import View from 'ol/View'
 import { transform } from 'ol/proj';
 
-import TileLayer from 'ol/layer/Tile'
-import OSM from 'ol/source/OSM'
-
 import getProjection from './projections'
-import MapControl from './MapControl';
-// assuming that OpenLayers knows about EPSG:21781, see above
+import MapControl from './MapControl'
+
+
 const OL_CONFIG = {
     pixelRatio: 1,
     maxZoom: 18,
@@ -16,8 +14,10 @@ const OL_CONFIG = {
     enableRotation: false,
 }
 
-export const MapView = ({ className, projectionId, initialView, onMapLoaded }) => {
+
+const MapView = ({ className, projectionId, initialView, onMapLoaded, children }) => {
     const [map, setMap] = useState()
+    const [layerChildren, setlayerChildren] = useState()
 
     const createMap = target => {
         const projection = getProjection(projectionId)
@@ -31,10 +31,9 @@ export const MapView = ({ className, projectionId, initialView, onMapLoaded }) =
             ...OL_CONFIG,
             view,
             target,
-            layers: [new TileLayer({ source: new OSM() })],
         })
-        setMap(map)
 
+        setMap(map)
         onMapLoaded && onMapLoaded(MapControl(map))
     }
 
@@ -52,8 +51,15 @@ export const MapView = ({ className, projectionId, initialView, onMapLoaded }) =
             }))
         }
 
-    })
+        // Update Layers
+        setlayerChildren(React.Children.map(children, child => React.cloneElement(child, { map })))
+    }, [children, map, projectionId])
 
-    return <div className={className} ref={useCallback(createMap, [])} />
+    return (
+        <div className={className} ref={useCallback(createMap, [])}>
+            {layerChildren}
+        </div>
+    )
 }
+
 export default MapView

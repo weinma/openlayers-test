@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
-import MapView from './Map'
+import MapView from './MapView'
+import OSMLayer from './OSMLayer'
 
 function App() {
   return (
@@ -8,8 +9,9 @@ function App() {
       <MapView
         className="Map"
         initialView={{ center: [16.37, 48.2], zoom: 7 }}
-        projectionId="EPSG:32632"
-      />
+        projectionId="EPSG:32632">
+          <OSMLayer />
+      </MapView>
     </div>
   )
 }
