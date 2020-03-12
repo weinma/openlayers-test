@@ -19,6 +19,7 @@ const initialiseExtents = () =>
 
 
 const initialiseProjections = () => defineProjections() || initialiseExtents()
+
 initialiseProjections()
 
 const getProjection = projectionId => {
