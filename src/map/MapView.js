@@ -4,7 +4,7 @@ import View from 'ol/View'
 import { transform } from 'ol/proj';
 
 import getProjection from './projections'
-import MapControl from './MapControl'
+import MapViewApi from './MapViewApi'
 
 
 const OL_CONFIG = {
@@ -15,7 +15,7 @@ const OL_CONFIG = {
 }
 
 
-const MapView = ({ className, projectionId, initialView, onMapLoaded, children }) => {
+const MapView = ({ className, projectionId, initialView, onMapLoaded = () => {}, children }) => {
     const [map, setMap] = useState()
     const [layerChildren, setlayerChildren] = useState()
 
@@ -34,11 +34,11 @@ const MapView = ({ className, projectionId, initialView, onMapLoaded, children }
         })
 
         setMap(map)
-        onMapLoaded && onMapLoaded(MapControl(map))
+        onMapLoaded(MapViewApi(map))
     }
 
     useEffect(() => {
-        if (!map) return
+        if (!map) return () => {}
 
         // Update view
         const { projection, extent } = getProjection(projectionId)
