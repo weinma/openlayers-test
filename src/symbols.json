@@ -5,17 +5,235 @@
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [16, 48]
+                "coordinates": [
+                    15.699589,
+                    48.31557000000001
+                ]
             },
             "properties": {
-                "sidc": "SFG-UCI----D"
+                "f": "(+)",
+                "m": "1",
+                "t": "13/1",
+                "w": "08 1432Z MAR 17",
+                "sidc": "SFGAUCA----F***"
             }
         },
         {
             "type": "Feature",
             "geometry": {
-                "type": "LineString",
-                "coordinates": [[15, 47], [17,49]]
+                "type": "Point",
+                "coordinates": [
+                    15.136479,
+                    48.358596999999975
+                ]
+            },
+            "properties": {
+                "f": "(+)",
+                "m": "1",
+                "t": "11/1",
+                "w": "13 1820Z MAR 17",
+                "sidc": "SFGAUCIZ---F***",
+                "deep": {
+                    "value": true
+                }
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    15.259671999999998,
+                    48.105132999999995
+                ]
+            },
+            "properties": {
+                "m": "1",
+                "t": "1/1",
+                "w": "08 1323Z MAR 17",
+                "sidc": "SFGPUCAA---E***"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    15.318163,
+                    48.14711
+                ]
+            },
+            "properties": {
+                "m": "10",
+                "t": "5/10",
+                "w": "14 0848Z MAR 17",
+                "sidc": "SFGAUCFHE--E***"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    17.471813,
+                    34.69782600000002
+                ]
+            },
+            "properties": {
+                "m": "",
+                "t": "1",
+                "w": "24 1302Z OCT 16",
+                "sidc": "SFGPUCIZ---H***"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    15.141228,
+                    48.13728800000001
+                ]
+            },
+            "properties": {
+                "m": "1",
+                "t": "/1",
+                "w": "27 0948Z OCT 16",
+                "sidc": "SFGPUCD----E***"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    14.209421237427943,
+                    47.352797203310814
+                ]
+            },
+            "properties": {
+                "f": "(+)",
+                "g": "1",
+                "m": "1",
+                "t": "/1",
+                "w": "14 0824Z MAR 17",
+                "sidc": "SFGCUCIA---E***"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    15.825383851127835,
+                    48.22546831183817
+                ]
+            },
+            "properties": {
+                "f": "(+)",
+                "m": "1",
+                "t": "12/1",
+                "w": "08 1431Z MAR 17",
+                "sidc": "SFGAUCIZ---F***"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    15.15584168824938,
+                    47.760084215079246
+                ]
+            },
+            "properties": {
+                "m": "1",
+                "t": "10/1",
+                "w": "13 1902Z MAR 17",
+                "sidc": "SFGCUCFTCM-F***"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    15.965099665413385,
+                    47.00473637600879
+                ]
+            },
+            "properties": {
+                "m": "1",
+                "t": "12/1",
+                "w": "13 1750Z MAR 17",
+                "sidc": "SFGPUCIZ---F***"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -3.45275779157974,
+                    42.84883785555681
+                ]
+            },
+            "properties": {
+                "m": "1",
+                "t": "11/1",
+                "w": "13 1909Z MAR 17",
+                "sidc": "SFGPUCIZ---F***"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    15.238139109655888,
+                    47.28150659053816
+                ]
+            },
+            "properties": {
+                "m": "1",
+                "t": "13/1",
+                "w": "13 1858Z MAR 17",
+                "sidc": "SFGCUCA----F***"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.13212048126788234,
+                    51.60151650336124
+                ]
+            },
+            "properties": {
+                "m": "",
+                "t": "1",
+                "w": "08 1445Z MAR 17",
+                "sidc": "SFGPUCIZ--AH***"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    15.83250930560518,
+                    47.593849434353615
+                ]
+            },
+            "properties": {
+                "f": "(-)",
+                "m": "1",
+                "q": 87.4125,
+                "t": "/1",
+                "w": "14 0828Z MAR 17",
+                "z": 30,
+                "sidc": "SFGAUCE----E***"
             }
         }
     ]

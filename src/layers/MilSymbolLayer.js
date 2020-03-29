@@ -10,15 +10,20 @@ import ms from 'milsymbol'
 
 const DEFAULT_CONFIG = {
   dataProjection: 'EPSG:4326',
+  fillOpacity: 1.0,
   iconSize: 35
 }
 
-const styleFunction = (iconSize) => feature => {
+const styleFunction = (iconSize, fillOpacity) => feature => {
   //Filter all non Point geometry
   if (feature.getGeometry().getType() !== "Point") return
 
-  const symbol = new ms.Symbol(feature.getProperties().sidc, {})
-  const symbolCanvas = symbol.setOptions({ size: iconSize }).asCanvas()
+  const symbol = new ms.Symbol(feature.getProperties().sidc, {
+    fillOpacity,
+    dtg: feature.get("w")
+  })
+
+  const svgSymbol = symbol.setOptions({ size: iconSize }).asSVG()
 
   return new Style({
     image: new Icon(({
@@ -26,22 +31,21 @@ const styleFunction = (iconSize) => feature => {
       anchor: [symbol.getAnchor().x, symbol.getAnchor().y],
       anchorXUnits: 'pixels',
       anchorYUnits: 'pixels',
-      imgSize: [Math.floor(symbol.getSize().width), Math.floor(symbol.getSize().height)],
-      img: symbolCanvas
+      src: 'data:image/svg+xml;base64,' + btoa(svgSymbol)
     }))
   })
 }
 
 const MilSymbolLayer = ({ map, geojson, config }) => {
-  const { dataProjection, iconSize } = { ...DEFAULT_CONFIG, config }
+  const { dataProjection, iconSize, fillOpacity } = { ...DEFAULT_CONFIG, config }
   const [layer, setLayer] = useState(new VectorLayer({
     source: new VectorSource(),
-    style: styleFunction(iconSize)
+    style: styleFunction(iconSize, fillOpacity)
   }))
 
   //updateLayer Sideeffect
   useEffect(() => {
-    if(!layer) return () => {}
+    if (!layer) return () => { }
     if (geojson) {
       const features = new GeoJSON().readFeatures(geojson, {
         dataProjection,
@@ -50,7 +54,7 @@ const MilSymbolLayer = ({ map, geojson, config }) => {
       layer.setSource(new VectorSource({ features }))
     }
     else layer.setSource(new VectorSource())
-    return () => {}
+    return () => { }
   }, [geojson, dataProjection, iconSize])
 
   //add / remove Layer Sideeffect
@@ -62,7 +66,7 @@ const MilSymbolLayer = ({ map, geojson, config }) => {
 
     return () => map.removeLayer(layer)
   }, [map, layer])
-  
+
   return React.Fragment
 }
 
