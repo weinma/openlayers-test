@@ -8,10 +8,43 @@ import Style from "ol/style/Style"
 import Icon from 'ol/style/Icon'
 import ms from 'milsymbol'
 
+import XmlParser from 'fast-xml-parser'
+import { j2xParser } from 'fast-xml-parser'
+
 const DEFAULT_CONFIG = {
   dataProjection: 'EPSG:4326',
   fillOpacity: 1.0,
   iconSize: 35
+}
+
+const modifyTextInSymbol = svgSymbol => {
+  try {
+    const xmlOptions = {
+      attributeNamePrefix: "",
+      attrNodeName: "attributes",
+      ignoreAttributes: false,
+      //      arrayMode: true
+    }
+
+    const svg = XmlParser.parse(svgSymbol, xmlOptions)
+    const jsParser = new j2xParser(xmlOptions)
+
+    const textClone = { ...svg.svg.text }
+    textClone.attributes = { ...svg.svg.text.attributes }
+    textClone.attributes["stroke-width"] = 10
+    textClone.attributes.stroke="white"
+    textClone.attributes.fill="white"
+    
+    svg.svg.text.attributes["stroke-width"] = 1
+    svg.svg.text.attributes.fill="black"
+    svg.svg.text.attributes.stroke="black"
+
+    svg.svg.text = [textClone, svg.svg.text]
+    return jsParser.parse(svg)
+  } catch (error) {
+    console.log(error.message)
+    return svgSymbol
+  }
 }
 
 const styleFunction = (iconSize, fillOpacity) => feature => {
@@ -24,14 +57,14 @@ const styleFunction = (iconSize, fillOpacity) => feature => {
   })
 
   const svgSymbol = symbol.setOptions({ size: iconSize }).asSVG()
-
+  const modifiedSymbol = modifyTextInSymbol(svgSymbol)
   return new Style({
     image: new Icon(({
       scale: 1,
       anchor: [symbol.getAnchor().x, symbol.getAnchor().y],
       anchorXUnits: 'pixels',
       anchorYUnits: 'pixels',
-      src: 'data:image/svg+xml;base64,' + btoa(svgSymbol)
+      src: 'data:image/svg+xml;base64,' + btoa(modifiedSymbol)
     }))
   })
 }
