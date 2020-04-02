@@ -11,7 +11,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment'
 
 function App() {
   return (
-    <div className="App">
+    <div id="App" className="App">
       <div id="popup">
         <Avatar variant="rounded">
           <AssignmentIcon />
