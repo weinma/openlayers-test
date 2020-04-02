@@ -1,27 +1,19 @@
 import ClusterSource from 'ol/source/Cluster'
 import VectorSource from 'ol/source/Vector'
 
-const CLUSTER_DISTANCE = 30 // pixels?
+const DEFAULT_DISTANCE = 30 // pixels
 
-const createSource = (map, features) => {
-  const source = new ClusterSource({
-    distance: CLUSTER_DISTANCE,
-    source: new VectorSource({ features })
-  })
+const createSource = (map, createClusterOverlays, cleanupClusterOverlays, features, distance = DEFAULT_DISTANCE) => {
+  const source = new ClusterSource({ distance, source: new VectorSource({ features }) })
 
-  source.on("change", event => {
-    const features = event.target.getFeatures()
-    features.filter(clusterFeature => clusterFeature.get("features").length > 1)
-      .forEach(clusterFeature => {
-        console.log(clusterFeature)
-      })
-  })
+  source.on("change", ({ target }) => {
+    const features = target.getFeatures()
+    if (features?.length === 0) return
 
-  source.forEachFeature(feature => {
-    console.log(feature)
-    return true
+    cleanupClusterOverlays()
+    const clusterFeatures = features.filter(clusterFeature => clusterFeature.get("features").length > 1)
+    createClusterOverlays(clusterFeatures, map)
   })
-  source.getFeatures()
 
   return source
 }
