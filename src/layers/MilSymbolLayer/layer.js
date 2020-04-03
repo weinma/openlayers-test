@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react"
 
-import Overlay from 'ol/Overlay'
-import { clone } from 'ol/extent'
-
 import GeoJSON from 'ol/format/GeoJSON'
 import VectorLayer from 'ol/layer/Vector'
 
@@ -24,7 +21,6 @@ const MilSymbolLayer = ({ map, geojson, config }) => {
   
   const createOverlay = (clusterFeatures, map) => {
     if (!clusterFeatures) return
-    console.log(clusterFeatures)
     setOverlays(clusterFeatures)
     /*
         const parent = document.getElementById('popup').parentNode
